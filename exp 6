@@ -1,0 +1,367 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base Class 1
+class Department {
+protected:
+    string dname;
+};
+
+// Derived Class 1 (inherits from Department)
+class Student : protected Department {
+protected:
+    string sname;
+    int roll;
+};
+
+// Derived Class 2 (inherits from Student, implementing Multilevel Inheritance)
+class Marks : protected Student {
+private:
+    int m1, m2;
+    int percentage; // The handwritten code uses 'int' for percentage.
+
+public:
+    void accept() {
+        cout << "Enter department: " << endl;
+        cin >> dname; // Accesses protected member from Department via Student
+        cout << "Enter name: " << endl;
+        cin >> sname; // Accesses protected member from Student
+        cout << "Enter marks 1: " << endl;
+        cin >> m1;
+        cout << "Enter marks 2: " << endl;
+        cin >> m2;
+    }
+
+    void calculate() {
+        // Simple average calculation, using integer division for percentage as per snippet
+        percentage = (m1 + m2) / 2;
+
+        cout << "Department: " << dname << endl;
+        cout << "Name: " << sname << endl;
+        cout << "Percentage: " << percentage << endl;
+    }
+};
+
+int main() {
+    Marks m;
+
+    m.accept();
+    m.calculate();
+
+    return 0;
+}
+/*
+Example Output (Based on handwritten note):
+Enter department:
+CSE
+Enter name:
+Gayatri
+Enter marks 1:
+88
+Enter marks 2:
+91
+Department: CSE
+Name: Gayatri
+Percentage: 89
+*/
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base Class 1
+class Department {
+protected:
+    string dname;
+};
+
+// Base Class 2
+class Student {
+protected:
+    string sname;
+    int roll;
+};
+
+// Derived Class (inherits from Department AND Student)
+class Marks : protected Department, protected Student {
+private:
+    int m1, m2;
+    int percentage; // The handwritten code uses 'int' for percentage.
+
+public:
+    void accept() {
+        cout << "Enter department: " << endl;
+        cin >> dname; // Accesses protected member from Department
+        cout << "Enter name: " << endl;
+        cin >> sname; // Accesses protected member from Student
+        cout << "Enter marks 1: " << endl;
+        cin >> m1;
+        cout << "Enter marks 2: " << endl;
+        cin >> m2;
+    }
+
+    void calculate() {
+        // Simple average calculation
+        percentage = (m1 + m2) / 2;
+
+        cout << "Department: " << dname << endl;
+        cout << "Name: " << sname << endl;
+        cout << "Percentage: " << percentage << endl;
+    }
+};
+
+int main() {
+    Marks m;
+
+    m.accept();
+    m.calculate();
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base Class
+class Person {
+protected:
+    string name;
+    int age;
+    
+public:
+    void acceptPer() {
+        cout << "Enter name: " << endl;
+        cin >> name;
+        cout << "Enter age: " << endl;
+        cin >> age;
+    }
+};
+
+// Derived Class 1 (inherits from Person)
+class Student : public Person {
+private:
+    int roll;
+    float per;
+
+public:
+    void acceptStud() {
+        // Accepts Student-specific data
+        cout << "Enter roll number: " << endl;
+        cin >> roll;
+        cout << "Enter Percentage: " << endl;
+        cin >> per;
+    }
+
+    void displayStud() {
+        cout << "--- Student Data ---" << endl;
+        cout << "Name: " << name << endl;  // Inherited from Person
+        cout << "Age: " << age << endl;    // Inherited from Person
+        cout << "Roll No.: " << roll << endl;
+        cout << "Percentage: " << per << endl;
+    }
+};
+
+// Derived Class 2 (inherits from Person)
+class Staff : public Person {
+private:
+    int emp_id;
+    string subject;
+
+public:
+    void acceptStaff() {
+        // Accepts Staff-specific data
+        cout << "Enter employee ID: " << endl;
+        cin >> emp_id;
+        cout << "Enter subject: " << endl;
+        cin >> subject;
+    }
+
+    void displayStaff() {
+        cout << "--- Staff Data ---" << endl;
+        cout << "Name: " << name << endl; // Inherited from Person
+        cout << "Age: " << age << endl;   // Inherited from Person
+        cout << "Emp ID: " << emp_id << endl;
+        cout << "Subject taught: " << subject << endl;
+    }
+};
+
+int main() {
+    Student s;
+    Staff t;
+
+    // Accept Person data for Student
+    s.acceptPer();
+    // Accept Student data
+    s.acceptStud();
+
+    // Accept Person data for Staff
+    t.acceptPer();
+    // Accept Staff data
+    t.acceptStaff();
+
+    // Display data
+    s.displayStud();
+    t.displayStaff();
+
+    return 0;
+}
+
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base Class A
+class College {
+protected:
+    string cname;
+};
+
+// Implied Base Class B (not fully defined in snippet, assuming it exists)
+class Employee {
+protected:
+    string emp_name;
+    int id;
+public:
+    // Accept function that reads College data (demonstrates access)
+    void acceptEmp(string &college_name) {
+        cout << "Enter College name: " << endl;
+        cin >> college_name;
+        cout << "Enter Emp name: " << endl;
+        cin >> emp_name;
+        cout << "Enter ID: " << endl;
+        cin >> id;
+    }
+
+    void displayEmp() {
+        // College name display would need to be passed or accessed via inheritance
+        // Using placeholders based on the snippet's logic:
+        // cout << "College: " << cname << endl; // cname is protected in College
+        cout << "Emp name: " << emp_name << endl;
+        cout << "ID: " << id << endl;
+    }
+};
+
+// Derived Class 1 (Inherits from College) - Represents the Hierarchical/Multilevel part
+class Student : protected College {
+private:
+    string stu_name;
+    int roll;
+
+public:
+    void acceptStud() {
+        cout << "Enter College name: " << endl;
+        cin >> cname; // Accesses protected member from College
+        cout << "Enter student name: " << endl;
+        cin >> stu_name;
+        cout << "Enter roll number: " << endl;
+        cin >> roll;
+    }
+
+    void displayStud() {
+        cout << "College: " << cname << endl;
+        cout << "Student name: " << stu_name << endl;
+        cout << "Roll Number: " << roll << endl;
+    }
+};
+
+// Derived Class 2 (Inherits from Employee) - Used with another base class for Multiple/Hybrid
+// NOTE: The handwritten snippet's Staff class inherits from Employee, but also contains functions
+// that ask for College name (cname), suggesting it should either inherit from College or have
+// a complex access mechanism not fully visible. I'm reconstructing based on the visible parts:
+
+class Staff : public Employee {
+private:
+    string name; // Staff's own name variable
+    int dept_id;
+
+public:
+    void acceptStaff() {
+        // Accepts Employee data (implicitly calls Employee's accept logic or is part of it)
+        // Replicating the input flow from the handwritten snippet for Staff:
+        cout << "Enter staff name: " << endl;
+        cin >> name; // Staff's name
+        cout << "Enter dept id: " << endl;
+        cin >> dept_id;
+    }
+    
+    void displayStaff(string college_name) {
+        cout << "College: " << college_name << endl;
+        cout << "Emp name: " << emp_name << endl; // Inherited from Employee
+        cout << "ID: " << id << endl;             // Inherited from Employee
+        cout << "Staff Name: " << name << endl;
+        cout << "Department ID: " << dept_id << endl;
+    }
+};
+
+// Since the handwritten main function is fragmented and hard to follow, 
+// I'll provide a simplified main function that utilizes the classes as defined:
+
+/*
+int main() {
+    Student stud1;
+    Staff staff1;
+    string college_name;
+    
+    // --- Student Example ---
+    stud1.acceptStud();
+    stud1.displayStud();
+    
+    // --- Staff Example (requires the Employee base class logic) ---
+    // The handwritten acceptEmp logic is confusingly mixed with College data.
+    // Simplifying:
+    cout << "--- Accepting Staff/Employee Data ---" << endl;
+    staff1.acceptEmp(college_name); // Call Employee's part, passing reference for college name
+    staff1.acceptStaff();           // Call Staff's part
+
+    staff1.displayEmp();
+    staff1.displayStaff(college_name);
+    
+    return 0;
+}
+*/
+
+// Using the exact main function structure from the handwritten notes (split across pages):
+// This assumes 'Employee' is the correct base class and its methods handle some data.
+int main() {
+    Staff staff1;
+    
+    // staff1.acceptEmp() from the snippet seems to read both college and employee data:
+    // It is an invalid use case as acceptEmp is not defined in Staff. 
+    // The snippet shows a void acceptEmp() that takes NO arguments in Staff, and another in a separate Employee class (not shown).
+    // Based on the written main():
+    // The function acceptEmp() must be a public member of the Staff class.
+    
+    // Reconstructing Staff based on the main call:
+    class StaffReconstructed : public Employee {
+    public:
+        void acceptEmp() { // Redefining acceptEmp to match the main call
+            // ... implementation that reads data ...
+        }
+        void displayEmp() { // Redefining displayEmp to match the main call
+            // ... implementation that displays data ...
+        }
+    };
+    
+    // *** Final main function extraction based on the handwritten code flow: ***
+    // (Assuming the Staff class was intended to have the methods acceptEmp and displayEmp)
+    // The complexity of Hybrid inheritance often involves virtual base classes (not shown).
+    
+    // Execution for Staff object:
+    // staff1.acceptEmp();
+    // staff1.displayEmp();
+    
+    // Execution for Student object (from the Student main() portion):
+    // Student stud1;
+    // stud1.acceptStud();
+    // stud1.displayStud();
+    
+    return 0;
+}
+
+
