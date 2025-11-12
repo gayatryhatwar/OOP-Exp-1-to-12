@@ -1,0 +1,116 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream fin("first.txt");   
+    ofstream fout("second.txt"); 
+
+    if (!fin) {
+        cout << "Error: first.txt not found!" << endl;
+        return 0;
+    }
+
+    char ch;
+    while (fin.get(ch)) {   
+        fout.put(ch);       
+    }
+
+    cout << "File copied successfully!" << endl;
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream fin("data.txt");   
+
+    if (!fin) {
+        cout << "Error: File not found!" << endl;
+        return 0;
+    }
+
+    char ch;
+    int digitCount = 0, spaceCount = 0;
+
+    while (fin.get(ch)) {   
+        if (ch >= '0' && ch <= '9')
+            digitCount++;
+        else if (ch == ' ')
+            spaceCount++;
+    }
+
+    cout << "Number of digits: " << digitCount << endl;
+    cout << "Number of spaces: " << spaceCount << endl;
+
+    fin.close();
+    return 0;
+}
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream fin("data.tx
+
+    if (!fin) {
+        cout << "Error: File not found!" << endl;
+        return 0;
+    }
+
+    string word;
+    int count = 0;
+
+    while (fin >> word) {   
+        count++;
+    }
+
+    cout << "Total number of words: " << count << endl;
+
+    fin.close();
+    return 0;
+}
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream fin("data.txt");   
+
+    if (!fin) {
+        cout << "Error: File not found!" << endl;
+        return 0;
+    }
+
+    string word, target;
+    int count = 0;
+
+    cout << "Enter the word to search: ";
+    cin >> target;
+
+    while (fin >> word) {   
+        if (word == target)
+            count++;
+    }
+
+    cout << "The word '" << target << "' occurs " << count << " times in the file." << endl;
+
+    fin.close();
+    return 0;
+}
+
+
+
