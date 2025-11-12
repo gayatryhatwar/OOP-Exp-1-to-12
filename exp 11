@@ -1,0 +1,110 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Vector {
+    T arr[10];     
+    int size;      
+public:
+    void create() {
+        cout << "Enter number of elements: ";
+        cin >> size;
+        cout << "Enter " << size << " elements:\n";
+        for (int i = 0; i < size; i++) {
+            cin >> arr[i];
+        }
+    }
+
+    void display() {
+        cout << "Vector elements are: ";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    void modify(int index, T newValue) {
+        if (index < 0 || index >= size)
+            cout << "Invalid index!\n";
+        else {
+            arr[index] = newValue;
+            cout << "Value modified successfully.\n";
+        }
+    }
+};
+
+int main() {
+    Vector<int> v;   
+
+    v.create();      
+    v.display();    
+
+    int pos, val;
+    cout << "Enter index to modify (starting from 0): ";
+    cin >> pos;
+    cout << "Enter new value: ";
+    cin >> val;
+
+    v.modify(pos, val);
+    v.display();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Vector {
+    T arr[10];    
+    int size;   
+public:
+    void create() {
+        cout << "Enter number of elements: ";
+        cin >> size;
+        cout << "Enter " << size << " elements:\n";
+        for (int i = 0; i < size; i++) {
+            cin >> arr[i];
+        }
+    }
+
+    void display() {
+        cout << "Vector elements are: ";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    void modify(int index, T newValue) {
+        if (index < 0 || index >= size)
+            cout << "Invalid index!\n";
+        else {
+            arr[index] = newValue;
+            cout << "Value modified successfully.\n";
+        }
+    }
+
+    void multiply(T scalar) {
+        for (int i = 0; i < size; i++) {
+            arr[i] = arr[i] * scalar;
+        }
+        cout << "All elements multiplied by " << scalar << ".\n";
+    }
+};
+
+int main() {
+    Vector<int> v;   
+    v.create();
+    v.display();
+
+    int scalar;
+    cout << "Enter scalar value to multiply: ";
+    cin >> scalar;
+
+    v.multiply(scalar);
+    v.display();
+
+    return 0;
+}
