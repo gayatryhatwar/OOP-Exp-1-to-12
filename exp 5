@@ -1,0 +1,278 @@
+   #include <iostream>
+using namespace std;
+
+class Sum {
+private:
+    int N;
+    int S; // Stores the sum
+
+public:
+    // Default Constructor
+    Sum() {
+        N = 10;
+        S = 0; // Initialize sum
+    }
+
+    void calculate() {
+        for (int i = 1; i <= N; i++) {
+            S = S + i;
+        }
+    }
+
+    void display() {
+        cout << "The sum from 1 to " << N << " is: " << S << endl;
+    }
+};
+
+int main() {
+    Sum S1; // Calls Default Constructor (N=10)
+    S1.calculate();
+    S1.display();
+    return 0;
+}
+/*
+Output (Expected for N=10):
+The sum from 1 to 10 is: 55
+*/
+
+
+#include <iostream>
+using namespace std;
+
+class SumCalculator {
+private:
+    int N;
+    int Sum;
+
+public:
+    // Parameterized Constructor
+    SumCalculator(int num) {
+        N = num;
+        Sum = 0;
+        // Calculation logic is inside the constructor
+        for (int i = 1; i <= N; i++) {
+            Sum += i;
+        }
+    }
+
+    void displaySum() {
+        cout << "Sum of numbers from 1 to " << N << " is: " << Sum << endl;
+    }
+};
+
+int main() {
+    int number;
+    cout << "Enter a number: ";
+    cin >> number;
+
+    SumCalculator obj(number); // Calls Parameterized Constructor
+    obj.displaySum();
+
+    return 0;
+}
+/*
+Example Input/Output (based on handwritten note):
+Enter a number: 10
+Sum of numbers from 1 to 10 is: 55
+*/
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    float per;
+
+public:
+    // Parameterized Constructor
+    Student(string n, float p) {
+        name = n;
+        per = p;
+    }
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Percentage: " << per << endl;
+    }
+};
+
+int main() {
+    // Note: The handwritten code shows two objects S, which is invalid (variable reuse)
+    // but the output only shows the last object's data. Assuming two distinct objects S1 and S2.
+    // Student S1("Gayatri", 82.1);
+    // Student S2("Riya", 85.3);
+
+    // If the intent was to only show the last object's data, the code would need adjustment.
+    // Based on the given snippet, the main function would usually look like this:
+    Student S("Gayatri", 82.1); // Initialize S
+    S = Student("Riya", 85.3);  // Assigns a new object, overwriting the old one (or using a temporary)
+    S.display();
+
+    return 0;
+}
+/*
+Output (Based on handwritten note which seems to display the last object created):
+Name: Riya
+Percentage: 85.3
+*/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class College {
+private:
+    int roll;
+    string name;
+    string course;
+
+public:
+    // Constructor with Default Arguments
+    College(int r = 0, string n = "Unknown", string c = "Computer Engineering") {
+        roll = r;
+        name = n;
+        course = c;
+    }
+
+    void display() {
+        cout << "Roll Number: " << roll << endl;
+        cout << "Name: " << name << endl;
+        cout << "Course: " << course << endl;
+    }
+};
+
+int main() {
+    // S1 uses all provided arguments
+    College S1(40, "Gayatri");
+    // S2 uses provided roll and name, default course
+    College S2(43, "Ridhima");
+    
+    // Note: The handwritten code implies S1(40, "Gayatri") and S2(43, "Ridhima")
+    // The Course will default to "Computer Engineering" for both.
+
+    S1.display();
+    S2.display();
+
+    return 0;
+}
+/*
+Output:
+Roll Number: 40
+Name: Gayatri
+Course: Computer Engineering
+Roll Number: 43
+Name: Ridhima
+Course: Computer Engineering
+*/
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    int roll;
+    string name;
+
+public:
+    // 1. Default Constructor (No arguments)
+    Student() {
+        name = "Unknown";
+        roll = 0;
+    }
+
+    // 2. Parameterized Constructor (String argument)
+    Student(string n) {
+        name = n;
+        roll = 0;
+    }
+
+    // 3. Parameterized Constructor (String and Int arguments)
+    Student(string n, int r) {
+        name = n;
+        roll = r;
+    }
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Roll number: " << roll << endl;
+    }
+};
+
+int main() {
+    Student S1;                // Calls Default Constructor (Unknown, 0)
+    Student S2("Gayatri");     // Calls Constructor 2 (Gayatri, 0)
+    Student S3("Ridhima", 43); // Calls Constructor 3 (Ridhima, 43)
+
+    S1.display();
+    S2.display();
+    S3.display();
+
+    return 0;
+}
+/*
+Output:
+Name: Unknown
+Roll number: 0
+Name: Gayatri
+Roll number: 0
+Name: Ridhima
+Roll number: 43
+*/
+
+#include <iostream>
+using namespace std;
+
+class SumCalculator {
+private:
+    int N;
+    int Sum;
+
+public:
+    // 1. Parameterized Constructor (Calculates sum)
+    SumCalculator(int num) {
+        N = num;
+        Sum = 0;
+        for (int i = 1; i <= N; i++) {
+            Sum += i;
+        }
+    }
+
+    // 2. Copy Constructor
+    // Creates a new object using an existing object of the same class
+    SumCalculator(const SumCalculator &obj) {
+        N = obj.N;
+        Sum = obj.Sum;
+    }
+
+    void displaySum() {
+        cout << "Sum of numbers from 1 to " << N << " is: " << Sum << endl;
+    }
+};
+
+int main() {
+    int number;
+    cout << "Enter a number: ";
+    cin >> number; // e.g., 20
+
+    SumCalculator obj1(number);  // Calls Parameterized Constructor
+    SumCalculator obj2(obj1);    // Calls Copy Constructor
+
+    cout << "Original object: ";
+    obj1.displaySum();
+    
+    cout << "Copied Object: ";
+    obj2.displaySum();
+
+    return 0;
+}
+/*
+Example Input/Output (based on handwritten note for N=20):
+Enter a number: 20
+Original object: Sum of numbers from 1 to 20 is: 210
+Copied Object: Sum of numbers from 1 to 20 is: 210
+*/
