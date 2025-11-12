@@ -1,0 +1,161 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+T sumArray(T arr[], int n) {
+    T sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum = sum + arr[i];
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    int intArr[100];
+    cout << "Enter " << n << " integer elements:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> intArr[i];
+    }
+
+    cout << "Sum of integer array: " << sumArray(intArr, n) << endl;
+
+  
+    float floatArr[100];
+    cout << "\nEnter " << n << " float elements:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> floatArr[i];
+    }
+
+    cout << "Sum of float array: " << sumArray(floatArr, n) << endl;
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+template <class T>
+T square(T num) {
+    return num * num;
+}
+
+
+template <>
+string square<string>(string str) {
+    return str + str;  
+}
+
+int main() {
+    int a;
+    string s;
+
+    cout << "Enter an integer: ";
+    cin >> a;
+    cout << "Square of integer: " << square(a) << endl;
+
+    cout << "\nEnter a string: ";
+    cin >> s;
+    cout << "Square of string: " << square(s) << endl;
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    float num1, num2, result;
+    char op;
+
+    cout << 
+    cin >> num1;
+
+    cout << "Enter an operator (+, -, *, /): ";
+    cin >> op;
+
+    cout << 
+    cin >> num2;
+
+    switch (op) {
+        case '+':
+            result = num1 + num2;
+            cout << "Result = " << result;
+            break;
+        case '-':
+            result = num1 - num2;
+            cout << "Result = " << result;
+            break;
+        case '*':
+            result = num1 * num2;
+            cout << "Result = " << result;
+            break;
+        case '/':
+            if (num2 != 0)
+                result = num1 / num2;
+            else {
+                cout << "Error! Division by zero not allowed.";
+                return 0;
+            }
+            cout << "Result = " << result;
+            break;
+        default:
+            cout << "Invalid operator!";
+    }
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Stack {
+    T arr[5];      
+    int top;       
+public:
+    Stack() {
+        top = -1;
+    }
+
+    void push(T x) {
+        if (top == 4)
+            cout << "Stack is full!\n";
+        else {
+            top++;
+            arr[top] = x;
+            cout << x << " pushed.\n";
+        }
+    }
+
+    void pop() {
+        if (top == -1)
+            cout << "Stack is empty!\n";
+        else {
+            cout << arr[top] << " popped.\n";
+            top--;
+        }
+    }
+};
+
+int main() {
+    Stack<int> s;   
+
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop();   
+
+    return 0;
+}
