@@ -1,0 +1,115 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class AddString {
+    string str;
+
+public:
+    AddString(string s = "") {
+        str = s;
+    }
+
+    
+    AddString operator +(AddString s2) {
+        AddString temp;
+        temp.str = str + s2.str;
+        return temp;
+    }
+
+    void show() {
+        cout << "String: " << str << endl;
+    }
+};
+
+int main() {
+    AddString s1("Hello ");
+    AddString s2("World!");
+
+    AddString s3 = s1 + s2;   
+
+    s3.show();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Login {
+protected:
+    string name;
+    string pass;
+public:
+    void accept() {
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter password: ";
+        cin >> pass;
+    }
+
+    virtual void display() {  
+        cout << "Name: " << name << endl;
+        cout << "Password: " << pass << endl;
+    }
+};
+
+class EmailLogin : public Login {
+    string email;
+public:
+    void accept() {
+        Login::accept();
+        cout << "Enter email: ";
+        cin >> email;
+    }
+
+    void display() {
+        cout << "\n--- Email Login Details ---\n";
+        cout << "Name: " << name << endl;
+        cout << "Password: " << pass << endl;
+        cout << "Email: " << email << endl;
+    }
+};
+
+class MembershipLogin : public Login {
+    int member_id;
+public:
+    void accept() {
+        Login::accept();
+        cout << "Enter membership ID: ";
+        cin >> member_id;
+    }
+
+    void display() {
+        cout << "\n--- Membership Login Details ---\n";
+        cout << "Name: " << name << endl;
+        cout << "Password: " << pass << endl;
+        cout << "Membership ID: " << member_id << endl;
+    }
+};
+
+int main() {
+    EmailLogin e;
+    MembershipLogin m;
+
+    cout << 
+    e.accept();
+
+    cout << 
+    m.accept();
+
+    cout << 
+    Login *ptr;
+
+    ptr = &e;
+    ptr->display();
+
+    ptr = &m;
+    ptr->display();
+
+    return 0;
+}
+
+
+
