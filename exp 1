@@ -1,0 +1,121 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+    int roll_no;
+    string name;
+    string cls;
+
+public:
+    void accept() {
+        cout << "Enter Roll No: ";
+        cin >> roll_no;
+        cin.ignore(); 
+        cout << "Enter Name: ";
+        getline(cin, name);
+        cout << "Enter Class: ";
+        getline(cin, cls);
+    }
+
+    void display() {
+        cout << "\n--- Student Details ---\n";
+        cout << "Roll No: " << roll_no << endl;
+        cout << "Name: " << name << endl;
+        cout << "Class: " << cls << endl;
+    }
+};
+
+int main() {
+    Student s;
+    s.accept();
+    s.display();
+    return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+class Time {
+    int H, M, S;
+
+public:
+    void accept();
+    void display_seconds();
+};
+
+void Time::accept() {
+    cout << "\nEnter hours: ";
+    cin >> H;
+    cout << "Enter minutes: ";
+    cin >> M;
+    cout << "Enter seconds: ";
+    cin >> S;
+}
+
+void Time::display_seconds() {
+    int total = (H * 3600) + (M * 60) + S;
+    cout << "\nTotal time in seconds: " << total << endl;
+}
+
+int main() {
+    Time t1;
+    cout << "Enter time details:";
+    t1.accept();
+    t1.display_seconds();
+    return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class Book {
+    int id;
+    string name;
+    float price;
+
+public:
+    void accept();
+    void display();
+    float get_price();
+};
+
+void Book::accept() {
+    cout << "\nEnter book ID: ";
+    cin >> id;
+    cout << "Enter book name: ";
+    cin >> name;
+    cout << "Enter price: ";
+    cin >> price;
+}
+
+void Book::display() {
+    cout << "\nBook ID: " << id << endl;
+    cout << "Book Name: " << name << endl;
+    cout << "Price: " << price << endl;
+}
+
+float Book::get_price() {
+    return price;
+}
+
+int main() {
+    Book b1, b2;
+    cout << "Enter details for Book 1:";
+    b1.accept();
+
+    cout << "\nEnter details for Book 2:";
+    b2.accept();
+
+    cout << "\nBook with greater price is:";
+    if (b1.get_price() > b2.get_price()) {
+        b1.display();
+    } else {
+        b2.display();
+    }
+    return 0;
+}
