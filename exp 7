@@ -1,0 +1,141 @@
+#include <iostream>
+using namespace std;
+
+
+float area(float side) {
+    return side * side;
+}
+
+
+float area(float length, float breadth) {
+    return length * breadth;
+}
+
+int main() {
+    float side, length, breadth;
+
+    cout << "Enter side of classroom (square): ";
+    cin >> side;
+
+    cout << "Enter length and breadth of laboratory (rectangle): ";
+    cin >> length >> breadth;
+
+    cout << "\nArea of Classroom = " << area(side) << endl;
+    cout << "Area of Laboratory = " << area(length, breadth) << endl;
+
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+class Sum {
+    float f[5];
+    int i[10];
+
+public:
+    void getData() {
+        cout << "Enter 5 float values: ";
+        for (int x = 0; x < 5; x++)
+            cin >> f[x];
+
+        cout << "Enter 10 integer values: ";
+        for (int x = 0; x < 10; x++)
+            cin >> i[x];
+    }
+
+    friend void calculate(Sum s);
+};
+
+
+void calculate(Sum s) {
+    float sumF = 0;
+    int sumI = 0;
+
+    for (int x = 0; x < 5; x++)
+        sumF += s.f[x];
+
+    for (int x = 0; x < 10; x++)
+        sumI += s.i[x];
+
+    cout << "\nSum of 5 float values = " << sumF;
+    cout << "\nSum of 10 integer values = " << sumI << endl;
+}
+
+int main() {
+    Sum s;
+    s.getData();
+    calculate(s);
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Number {
+    int num;
+
+public:
+    Number(int n) {   
+        num = n;
+    }
+
+    void operator -() {   
+        num = -num;
+    }
+
+    int getNum() {   
+        return num;
+    }
+};
+
+int main() {
+    Number n(10);   
+
+    cout << "Before using operator: " << n.getNum() << endl;
+
+    -n;   
+
+    cout << "After using operator: " << n.getNum() << endl;
+
+    return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+class Number {
+    int num;
+
+public:
+    Number(int n) {     
+        num = n;
+    }
+
+    // Overload unary ++ operator
+    void operator ++() {
+        num = num + 1;
+    }
+
+    int getNum() {
+        return num;
+    }
+};
+
+int main() {
+    Number n(10);   
+
+    cout << "Before using operator: " << n.getNum() << endl;
+
+    ++n;   
+
+    cout << "After using operator: " << n.getNum() << endl;
+
+    return 0;
+}
+
+
+
