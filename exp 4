@@ -1,0 +1,619 @@
+#include <iostream>
+using namespace std;
+
+class B;
+
+class A {
+private:
+    int x;
+public:
+    A(int val) {
+        x = val;
+    }
+    friend int sum(A, B);
+};
+
+class B {
+private:
+    int y;
+public:
+    B(int val) {
+        y = val;
+    }
+    friend int sum(A, B);
+};
+
+int sum(A a, B b) {
+    return a.x + b.y;
+}
+
+int main() {
+    A obj1(5);
+    B obj2(7);
+
+    cout << "Sum: " << sum(obj1, obj2) << endl;
+    return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+class Number {
+private:
+    int value;
+public:
+    Number(int val) {
+        value = val;
+    }
+
+    void show() {
+        cout << "Value: " << value << endl;
+    }
+
+    friend void swapNumbers(Number &, Number &);
+};
+
+void swapNumbers(Number &n1, Number &n2) {
+    int temp = n1.value;
+    n1.value = n2.value;
+    n2.value = temp;
+}
+
+int main() {
+    Number a(10);
+    Number b(20);
+
+    cout << "Before Swap:" << endl;
+    a.show();
+    b.show();
+
+    swapNumbers(a, b);
+
+    cout << "After Swap:" << endl;
+    a.show();
+    b.show();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Cube;
+
+class Box {
+private:
+    int volume;
+public:
+    Box(int v) {
+        volume = v;
+    }
+    friend void findGreater(Box, Cube);
+};
+
+class Cube {
+private:
+    int volume;
+public:
+    Cube(int v) {
+        volume = v;
+    }
+    friend void findGreater(Box, Cube);
+};
+
+void findGreater(Box b, Cube c) {
+    if (b.volume > c.volume) {
+        cout << "Box has greater volume: " << b.volume << endl;
+    } 
+    else if (c.volume > b.volume) {
+        cout << "Cube has greater volume: " << c.volume << endl;
+    } 
+    else {
+        cout << "Both have equal volume: " << b.volume << endl;
+    }
+}
+
+int main() {
+    Box box1(100);
+    Cube cube1(80);
+
+    findGreater(box1, cube1);
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+    float real;
+    float imag;
+
+public:
+    void getData() {
+        cout << "Enter real part: ";
+        cin >> real;
+        cout << "Enter imaginary part: ";
+        cin >> imag;
+    }
+
+    void showData() {
+        cout << real << " + " << imag << "i" << endl;
+    }
+
+    friend Complex add(Complex c1, Complex c2);
+};
+
+// Friend function to add two complex numbers
+Complex add(Complex c1, Complex c2) {
+    Complex temp;
+    temp.real = c1.real + c2.real;
+    temp.imag = c1.imag + c2.imag;
+    return temp;
+}
+
+int main() {
+    Complex c1, c2, c3;
+
+    cout << "Enter first complex number:" << endl;
+    c1.getData();
+
+    cout << "Enter second complex number:" << endl;
+    c2.getData();
+
+    c3 = add(c1, c2);
+
+    cout << "\nFirst Complex Number: ";
+    c1.showData();
+    cout << "Second Complex Number: ";
+    c2.showData();
+    cout << "Sum of Complex Numbers: ";
+    c3.showData();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int mark1, mark2, mark3;
+
+public:
+    // Constructor
+    Student(string n, int m1, int m2, int m3) {
+        name = n;
+        mark1 = m1;
+        mark2 = m2;
+        mark3 = m3;
+    }
+
+    // Friend declaration
+    friend void calculateAverage(Student s);
+};
+
+// Friend function definition
+void calculateAverage(Student s) {
+    float avg = (s.mark1 + s.mark2 + s.mark3) / 3.0; // Use 3.0 for float division
+    cout << "Student name: " << s.name << endl;
+    cout << "Average marks: " << avg << endl;
+}
+
+int main() {
+    // Note: The handwritten code shows s1("Ani", 85, 90, 95), but the output says "Gayatri" with "90".
+    // I'll use the constructor call from the code for consistency.
+    Student s1("Ani", 85, 90, 95);
+    calculateAverage(s1);
+
+    return 0;
+}
+/*
+Expected Output for the provided input:
+Student name: Ani
+Average marks: 90
+*/
+
+
+#include <iostream>
+using namespace std;
+
+// Forward declarations
+class Beta;
+class Gamma;
+
+class Alpha {
+private:
+    int a;
+public:
+    Alpha(int val) {
+        a = val;
+    }
+    // Friend declaration for Alpha
+    friend void totalSum(Alpha x, Beta y, Gamma z);
+};
+
+class Beta {
+private:
+    int b;
+public:
+    Beta(int val) {
+        b = val;
+    }
+    // Friend declaration for Beta
+    friend void totalSum(Alpha x, Beta y, Gamma z);
+};
+
+class Gamma {
+private:
+    int c;
+public:
+    Gamma(int val) {
+        c = val;
+    }
+    // Friend declaration for Gamma
+    friend void totalSum(Alpha x, Beta y, Gamma z);
+};
+
+// Friend function definition
+void totalSum(Alpha x, Beta y, Gamma z) {
+    int sum = x.a + y.b + z.c;
+    cout << "Sum of all values: " << sum << endl;
+}
+
+int main() {
+    Alpha obj1(10);
+    Beta obj2(20);
+    Gamma obj3(30);
+
+    totalSum(obj1, obj2, obj3);
+
+    return 0;
+}
+/*
+Output:
+Sum of all values: 60
+*/
+
+
+#include <iostream>
+#include <cmath> // Needed for sqrt()
+using namespace std;
+
+class Point {
+private:
+    int x, y;
+
+public:
+    // Constructor
+    Point(int xVal, int yVal) {
+        x = xVal;
+        y = yVal;
+    }
+
+    // Friend declaration
+    friend double calculateDistance(Point p1, Point p2);
+};
+
+// Friend function definition
+double calculateDistance(Point p1, Point p2) {
+    int dx = p2.x - p1.x; // Accessing private members of p1 and p2
+    int dy = p2.y - p1.y;
+    // Euclidean distance formula: sqrt((x2-x1)^2 + (y2-y1)^2)
+    return sqrt(dx * dx + dy * dy);
+}
+
+int main() {
+    Point p1(3, 4);
+    Point p2(7, 1);
+
+    double distance = calculateDistance(p1, p2);
+
+    cout << "Distance between points: " << distance << endl;
+
+    return 0;
+}
+/*
+For p1(3,4) and p2(7,1):
+dx = 7 - 3 = 4
+dy = 1 - 4 = -3
+Distance = sqrt(4*4 + (-3)*(-3)) = sqrt(16 + 9) = sqrt(25) = 5
+Output:
+Distance between points: 5
+*/
+
+
+#include <iostream>
+using namespace std;
+
+// Forward declaration
+class Audit;
+
+class BankAccount {
+private:
+    int balance;
+
+public:
+    // Constructor
+    BankAccount(int b) {
+        balance = b;
+    }
+
+    // Friend declaration
+    // This function will be defined outside both classes
+    friend void auditBalance(BankAccount acc, Audit* auditor);
+};
+
+class Audit {
+public:
+    // Function that initiates the audit
+    void startAudit(BankAccount acc) {
+        // 'this' pointer is passed to the friend function
+        auditBalance(acc, this);
+    }
+    
+    // The handwritten code includes a friend declaration here for symmetry, 
+    // but it's not strictly necessary if auditBalance only accesses BankAccount's private members.
+    // friend void auditBalance(BankAccount acc, Audit* auditor); 
+};
+
+// Friend function definition
+// It receives a BankAccount object and an Audit object pointer
+void auditBalance(BankAccount acc, Audit* auditor) {
+    // Can access acc.balance because it's a friend of BankAccount
+    cout << "Balance: " << acc.balance << endl;
+}
+
+int main() {
+    BankAccount myAcc(50000);
+    Audit auditor;
+
+    auditor.startAudit(myAcc);
+
+    return 0;
+}
+/*
+Output:
+Balance: 50000
+*/
+
+
+#include <iostream>
+using namespace std;
+
+class Number {
+private:
+    int num;
+
+public:
+    // Constructor
+    Number(int n) {
+        num = n;
+    }
+
+    // Member function to swap the private 'num' with the argument object's 'num'
+    void swap(Number &n) {
+        // Swap logic:
+        int t = num;  // t = calling object's num (e.g., a.num)
+        num = n.num;  // calling object's num = argument object's num (a.num = b.num)
+        n.num = t;    // argument object's num = temporary (b.num = old a.num)
+    }
+
+    // Display function
+    void show() {
+        cout << num << " ";
+    }
+};
+
+int main() {
+    Number a(10), b(20);
+
+    a.show();
+    b.show();
+    cout << endl; // Output: 10 20
+
+    a.swap(b); // Swap 'a' and 'b'. 'a' becomes 20, 'b' becomes 10.
+    // Note: The handwritten code shows 'a.swap(b); b.swap(a);' but the single a.swap(b) is sufficient
+    // for a complete swap as defined. I will execute the line that performs the swap.
+
+    a.show();
+    b.show();
+    cout << endl; // Output: 20 10
+
+    return 0;
+}
+/*
+Output:
+10 20
+20 10
+*/
+
+
+#include <iostream>
+using namespace std;
+
+class Number {
+private:
+    int num;
+
+public:
+    // Constructor
+    Number(int n) {
+        num = n;
+    }
+
+    // Friend declaration for a global function
+    friend void swapNumbers(Number &x, Number &y);
+
+    // Display function
+    void show() {
+        cout << num << " ";
+    }
+};
+
+// Friend function definition
+void swapNumbers(Number &x, Number &y) {
+    int temp = x.num;  // Accessing private members of x
+    x.num = y.num;     // Accessing private members of y
+    y.num = temp;
+}
+
+int main() {
+    Number a(10), b(20);
+
+    // Before swap
+    a.show();
+    b.show();
+    cout << endl; // Output: 10 20
+
+    // Swap
+    swapNumbers(a, b);
+
+    // After swap
+    a.show();
+    b.show();
+    cout << endl; // Output: 20 10
+
+    return 0;
+}
+/*
+Output:
+10 20
+20 10
+*/
+
+
+#include <iostream>
+using namespace std;
+
+// Forward declaration is needed because Class A references Class B
+class B;
+
+class A {
+private:
+    int numA;
+public:
+    // Constructor
+    A(int n) {
+        numA = n;
+    }
+    // Friend declaration
+    friend void swapNumbers(A &x, B &y);
+    // Display function
+    void show() {
+        cout << numA << " ";
+    }
+};
+
+class B {
+private:
+    int numB;
+public:
+    // Constructor
+    B(int n) {
+        numB = n;
+    }
+    // Friend declaration
+    friend void swapNumbers(A &x, B &y);
+    // Display function
+    void show() {
+        cout << numB << " ";
+    }
+};
+
+// Friend function definition
+void swapNumbers(A &x, B &y) {
+    int temp = x.numA; // Accesses private member of A
+    x.numA = y.numB;   // Accesses private member of B
+    y.numB = temp;
+}
+
+int main() {
+    A obj1(10);
+    B obj2(20);
+
+    // Before swap
+    obj1.show();
+    obj2.show();
+    cout << endl; // Output: 10 20
+
+    // Swap
+    swapNumbers(obj1, obj2);
+
+    // After swap
+    obj1.show();
+    obj2.show();
+    cout << endl; // Output: 20 10
+
+    return 0;
+}
+/*
+Output:
+10 20
+20 10
+*/
+
+#include <iostream>
+using namespace std;
+
+// Forward declaration
+class Result2;
+
+class Result1 {
+private:
+    float marks;
+public:
+    // Function to read marks for Result 1
+    void read() {
+        cout << "Enter marks for Result 1: ";
+        cin >> marks;
+    }
+    // Friend declaration
+    friend void average(Result1 &r1, Result2 &r2);
+};
+
+class Result2 {
+private:
+    float marks;
+public:
+    // Function to read marks for Result 2
+    void read() {
+        cout << "Enter marks for Result 2: ";
+        cin >> marks;
+    }
+    // Friend declaration
+    friend void average(Result1 &r1, Result2 &r2);
+};
+
+// Friend function definition
+void average(Result1 &r1, Result2 &r2) {
+    // Accessing private members r1.marks and r2.marks
+    float avg = (r1.marks + r2.marks) / 2.0;
+    cout << "Average marks = " << avg << endl;
+}
+
+int main() {
+    Result1 obj1;
+    Result2 obj2;
+
+    // Read input
+    obj1.read();
+    obj2.read();
+
+    // Calculate and display average
+    average(obj1, obj2);
+
+    return 0;
+}
+/*
+Example Input/Output (based on handwritten note):
+Enter marks for Result 1: 100
+Enter marks for Result 2: 99
+Average marks = 99.5
+*/
