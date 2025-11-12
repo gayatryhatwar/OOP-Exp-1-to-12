@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+class City {
+public:
+    string name;
+    int population;
+};
+
+int main() {
+    City cities[5];
+    string maxCity;
+    int maxPop = 0;
+
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter name of city " << i + 1 << ": ";
+        cin >> cities[i].name;
+        cout << "Enter population: ";
+        cin >> cities[i].population;
+
+        if (cities[i].population > maxPop) {
+            maxPop = cities[i].population;
+            maxCity = cities[i].name;
+        }
+    }
+
+    cout << "\nCity with highest population: " << maxCity << endl;
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Account {
+public:
+    int accNo;
+    float balance;
+};
+
+int main() {
+    Account acc[10];
+
+    for (int i = 0; i < 10; i++) {
+        cout << "\nEnter details for Account " << i + 1 << ":\n";
+        cout << "Account No: ";
+        cin >> acc[i].accNo;
+        cout << "Balance: ";
+        cin >> acc[i].balance;
+
+        if (acc[i].balance >= 5000) {
+            acc[i].balance += acc[i].balance * 0.10;  // Add 10% interest
+        }
+    }
+
+    cout << "\n--- Accounts with balance >= 5000 (after 10% interest) ---\n";
+    for (int i = 0; i < 10; i++) {
+        if (acc[i].balance >= 5000) {
+            cout << "Account No: " << acc[i].accNo
+                 << " | Balance: " << acc[i].balance << endl;
+        }
+    }
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class staff {
+public:
+    char name[50];
+    char post[20];
+};
+
+int main() {
+    staff s[5];
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter name of staff " << (i + 1) << ": ";
+        cin >> s[i].name;
+        cout << "Enter post: ";
+        cin >> s[i].post;
+    }
+
+    cout << "\nStaff with post 'HOD':\n";
+    for (int i = 0; i < 5; i++) {
+        if (strcmp(s[i].post, "HOD") == 0) {
+            cout << s[i].name << endl;
+        }
+    }
+
+    return 0;
+}
