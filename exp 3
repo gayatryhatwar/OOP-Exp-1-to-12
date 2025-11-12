@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+class book {
+    string t, a;
+    float p;
+public:
+    void accept() {
+        cout << "Enter book title: ";
+        getline(cin, t);
+        cout << "Enter author name: ";
+        getline(cin, a);
+        cout << "Enter price: ";
+        cin >> p;
+    }
+
+    void dis() {
+        cout << "Book title: " << t;
+        cout << "Book author: " << a;
+        cout << "Price: " << p;
+    }
+};
+
+int main() {
+    book b1;
+    book *ptr = &b1;
+
+    ptr->accept();
+    ptr->dis();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class student {
+private:
+    int roll_no;
+    float percentage;
+
+public:
+    void accept() {
+        cout << "Enter Roll Number: ";
+        cin >> this->roll_no;
+        cout << "Enter Percentage: ";
+        cin >> this->percentage;
+    }
+
+    void display() {
+        cout << "\nStudent Details:\n";
+        cout << "Roll Number: " << this->roll_no << endl;
+        cout << "Percentage: " << this->percentage << "%" << endl;
+    }
+};
+
+int main() {
+    student s;
+    s.accept();
+    s.display();
+    return 0;
+}
